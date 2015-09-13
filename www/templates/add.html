@@ -1,0 +1,59 @@
+<ion-modal-view>
+  <ion-header-bar> 
+    <h1 class="title">Add Class</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+    <ion-content padding="true" scroll="false">
+        <form>
+            <div ng-model="tt"
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label" >Module Name</span>
+                    <input type="text" placeholder="" name="module" ng-model="tt.module" />
+                </label>
+
+                <label class="item item-select">
+                    <span class="input-label">LAB/Lecture/Tutorial</span>
+                    <select>
+                        <option ng-model="type" ng-value="Lab">Lab</option>
+                        <option ng-model="type" ng-value="Lecture">Lecture</option>
+                        <option ng-model="type" ng-value="Tutorial">Tutorial</option>
+                    </select>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label" >Room</span>
+                    <input type="text" placeholder="" ng-model="tt.room" />
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label" >Time</span>
+                    <input type="text" placeholder="" ng-model="tt.time" />
+                </label>
+
+                <label class="item item-select">
+                    <span class="input-label">Day</span>
+                    <select>
+                        <option ng-model="tt.day" ng-value="Monday">Monday</option>
+                        <option ng-model="tt.day" ng-value="Tuesday">Tuesday</option>
+                        <option ng-model="tt.day" ng-value="Wednesday">Wednesday</option>
+                        <option ng-model="tt.day" ng-value="Thursday">Thursday</option>
+                        <option ng-model="tt.day" ng-value="Friday">Friday</option>
+                        <option ng-model="tt.day" ng-value="Saturday">Saturday</option>
+                    </select>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Lecturer</span>
+                    <input type="text" placeholder="" ng-model="tt.lect" />
+                </label>
+            </ion-list>
+            <button type="submit" class="button button-stable button-block" ng-click="create(tt)">Add Class</button>
+            </div>
+        </form>
+        <p ng-if="message">Message: <strong>{{ message }}</strong></p>
+        <p ng-if="error">Error: <strong>{{ error }}</strong></p>
+    </ion-content>
+</ion-modal-view>
