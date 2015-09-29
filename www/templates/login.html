@@ -6,15 +6,17 @@
         <div>
             <div class="list list-inset">
                 <label class="item item-input login-input">
-                    <input ng-model="username" type="text" placeholder="Email" />
+                    <input ng-model="username" type="email" placeholder="Email" />
                 </label>
-                <label class="item item-input login-input">
+                <label class="item item-input login-input password">
                     <input ng-model="password" type="password" placeholder="Password" />
                 </label>
             </div>
-            <div class="padding">
+            <div class="padding1">
                 <button ng-click="login(username, password)" class="button button-block login">Sign In</button>
-                <button ng-click="register(username, password)" class="button button-block button-dark">Register</button>
+                <button ng-click="register(username, password)" class="button button-block button-dark register">Register</button> 
+                <p ng-if="error">Error: <strong>{{ error }}</strong></p>
+                <p ng-if="message">Error: <strong>{{ message }}</strong></p>
             </div>
         </div>
     </ion-content>

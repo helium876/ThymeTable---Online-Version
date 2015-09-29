@@ -95,13 +95,27 @@
 .login{
 	color: #000;
 	background-color: #fff;
+	border-radius: 100px;
+}
+
+.register{
+	border-radius: 100px;
 }
 
 .padding{
 	margin-right: 30px;
 	margin-left: 30px;
 }
-.login:hover,.login:active{
+
+.padding1{
+	margin-right: 100px;
+	margin-left: 100px;
+}
+.login:active{
 	color: white;
-	background-color: #8DA6E3;
+	background-color: #939393;
+}
+
+.email{
+	border-radius: 100px;
 }

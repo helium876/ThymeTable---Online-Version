@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic', 'firebase']);
+var app = angular.module('starter', ['ionic', 'firebase','ui.router','ngCordova']);
 var fb = null;
  
 app.run(function($ionicPlatform) {
@@ -14,9 +14,11 @@ app.run(function($ionicPlatform) {
 });
 
 app.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/login');
     $stateProvider
     .state('login', {
         url: '/login',
+        //abstract: true, 
         templateUrl: 'templates/login.html',
         controller: 'LoginController'
     })
@@ -24,16 +26,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         url: '/add',
         templateUrl: 'templates/add.html',
         controller: 'TimeController'
+
     })
     .state('time', {
         url: '/time',
         templateUrl: 'templates/time.html',
-        controller: 'TimeController'
+        controller: 'TimeController'    
     });
-    $urlRouterProvider.otherwise('/login');
 });
 
-app.controller("LoginController", function($scope, $firebaseAuth, $location) {
+app.controller("LoginController", function($scope, $rootScope, $state, $timeout, $firebaseAuth) {
  
     $scope.login = function(username, password) {
         var fbAuth = $firebaseAuth(fb);
@@ -41,9 +43,12 @@ app.controller("LoginController", function($scope, $firebaseAuth, $location) {
             email: username,
             password: password
         }).then(function(authData) {
-            $location.path("/time");
+            $scope.message= "Logged in as:" + authData.uid;
+           $timeout(function() {
+                $state.transitionTo("time");
+            }, 1000);
         }).catch(function(error) {
-            console.error("ERROR: " + error);
+            $scope.error = "Authentication failed: " +error;
         });
     }
  
@@ -55,9 +60,12 @@ app.controller("LoginController", function($scope, $firebaseAuth, $location) {
                 password: password
             });
         }).then(function(authData) {
-            $location.path("/time");
+        $scope.message= "Logged in as:" + authData.uid;
+            $timeout(function() {
+                $state.transitionTo("time");
+            }, 5000);
         }).catch(function(error) {
-            console.error("ERROR " + error);
+            $scope.error("ERROR " + error);
         });
     }
  
@@ -97,7 +105,9 @@ app.controller("TimeController", function($scope, $firebaseObject, $ionicModal, 
             //day: tt.day,
             lect: tt.lect
         });
+        $scope.closeLogin();
     }
 });
 
 app.$inject = ['$scope'];
+app.$inject = ['state'];
