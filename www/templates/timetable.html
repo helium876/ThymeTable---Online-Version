@@ -1,0 +1,15 @@
+<ion-view title="Timetable" ng-init="list()">
+    <ion-nav-buttons side="right">
+        <button class="right button button-icon icon ion-plus" ng-click="openModal()"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="card" ng-repeat="ttable in data.ttables">
+          <div class="item item-text-wrap">
+            <div class="module">{{ttable.title}}</div>
+            <div class="lect">Lecturer: {{ttable.lect}}</div><br>
+            <div class="room">{{ttable.room}}</div>
+            <div class="time">{{ttable.time}}</div>
+          </div>
+      </div>
+    </ion-content>
+</ion-view>
