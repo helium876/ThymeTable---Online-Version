@@ -3,11 +3,9 @@
 ---
 
 ##### Developed By Agyei "Helium" Masters
-###### [Twitter](https://twitter.com/_helium) 
-###### [Github](https://github.com/helium96) 
+###### [Twitter](https://twitter.com/_helium)  ###### [Github](https://github.com/helium96) 
 ##### Designed By Jordan "Pr0x1m4" Jones
-###### [Twitter](https://twitter.com/Pr0x1ma) 
-###### [Github](https://github.com/Pr0x1m4) 
+###### [Twitter](https://twitter.com/Pr0x1ma)  ###### [Github](https://github.com/Pr0x1m4) 
 
 
 
