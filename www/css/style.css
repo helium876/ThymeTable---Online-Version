@@ -1,16 +1,16 @@
 /* Empty. Add your own CSS if you like */
 
 .pane{
-	background-color: #089de3;
+	background-color: #fff;
 }
 
 .bar{
-	background-color: #444 !important;
-	border-top: none !important;
+	background-color: #49BA6E !important;
+	/*border-top: none !important;
 	border-bottom: none !important;
 	-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.54);
 	-moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.54);
-	box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.54);
+	box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.54);*/
 
 }
 
@@ -23,8 +23,10 @@
 	background: white !important;
 }
 .login-input{
-	background-color: #444;
-	padding: 10px;
+	background-color: #fff;
+	padding: 5px;
+	border: solid #49BA6E 1px;
+	box-shadow: none !important;
 	margin-left: 30px;
 	margin-right: 30px;
 }
@@ -33,28 +35,38 @@
 .login-input ::-moz-input-placeholder,
 .login-input ::-ms-input-placeholder
 {
-	color: white;
+	color: #000;
 }
 
 .login-input input:focus,
 .login-input input{
-	color: #fff !important;
+	color: #49BA6E !important;
 }
 
 .logo{
 	display: block;
     margin-left: auto;
     margin-right: auto;
-	height: 200px;
-	margin-bottom: 20px;
+	width: 300px;
+	/*margin-top: 30px;*/
+	margin-bottom: 90px;
 }
 
 .module{
-	color: #089de3;
+	/*color: #089de3;*/
+	color: #49BA6E;
 	font-size: 25px;
+	font-weight: 600;
 	text-transform: uppercase;
 	margin-bottom: 15px; 
 	margin-left: 10px;
+}
+
+.day{
+	color: grey;
+	float: right;
+	font-size: 20px;
+
 }
 
 .room{
@@ -64,6 +76,7 @@
 	color: grey;
 	margin-left: 10px;
 	margin-bottom: 10px;
+	font-weight: 100;
 
 }
 
@@ -73,6 +86,7 @@
 	color: grey;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	font-weight: 100;
 
 }
 
@@ -80,6 +94,7 @@
 	color: grey;
 	font-size: 20px;
 	margin-left: 10px;
+	font-weight: 100;
 }
 
 .spinner svg {
@@ -93,13 +108,12 @@
 }
 
 .login{
-	color: #000;
-	background-color: #fff;
-	border-radius: 100px;
+	color: #fff;
+	background-color: #49BA6E;
 }
 
 .register{
-	border-radius: 100px;
+	color: #fff;
 }
 
 .padding{
@@ -119,3 +133,16 @@
 .email{
 	border-radius: 100px;
 }
+
+
+.card{
+	margin: 20px;
+	border: solid #49BA6E 1px;
+	box-shadow: none !important;
+
+}
+
+.item{
+	margin-top: 20px;
+}
+

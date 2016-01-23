@@ -1,6 +1,56 @@
+<ion-side-menus>
+  <!-- Center content -->
+  <ion-nav-bar class="bar-positive nav-title-slide-ios7 has-tabs-top">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon icon ion-navicon" ng-click="toggleDrawer()">
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-side-menu-content>
+      <ion-view title="Timetable" >
+         <!-- <ion-nav-buttons side="right">
+              <button class="right button button-icon" ng-click="openModal()"><i class="icon ion-grid"></i></button>
+          </ion-nav-buttons>-->
+          <ion-content ng-init="list();" class="has-header">
+              <div class="card" ng-repeat="ttable in data.ttables" on-hold="onHold($index)">
+              <!--<div ng-if="getColor(ttable.type)"></div>-->
+                <div class="item item-text-wrap">
+                  <div class="module">{{ttable.title}}</div>
+                  <div class="day">{{ttable.day}}</div>
+                  <div class="lect">Lecturer: {{ttable.lect}}</div><br>
+                  <div class="room">{{ttable.room}}</div>
+                  <div class="time">{{ttable.time}}</div>
+                </div>
+            </div>
+         </ion-content>
+      </ion-view>
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <drawer side="left" > 
+  <!-- 
+      <ion-nav-bar  class="bar-stable nav-title-slide-ios7 has-tabs-top"> 
+      </ion-nav-bar>-->
+      
+        <ion-view title="Menu" style="background-color:">
+          <ion-content class="has-header">
+            <ion-list>
+        <ion-item class="sd-men" menu-close ng-click="unAuth()" href="#app/login">
+          Logout
+        </ion-item>
+        <ion-item class="sd-men" menu-close ng-click="openModal()">
+          Add Class
+        </ion-item>
+          </ion-content>
+        </ion-view>
+  </drawer>
+</ion-side-menus>
+<!--
+<ion-side-menus>
 <ion-view title="Timetable" ng-init="list()">
     <ion-nav-buttons side="right">
-        <button class="right button button-icon icon ion-plus" ng-click="openModal()"></button>
+        <button class="right button button-icon" ng-click="openModal()"><i class="icon ion-grid"></i></button>
     </ion-nav-buttons>
     <ion-content>
         <div class="card" ng-repeat="ttable in data.ttables">
@@ -13,3 +63,4 @@
       </div>
     </ion-content>
 </ion-view>
+</ion-side-menus>-->

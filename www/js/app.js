@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic', 'firebase','ui.router','ngCordova']);
+var app = angular.module('starter', ['ionic', 'firebase','ui.router','ngCordova','drawer']);
 var fb = null;
  
 app.run(function($ionicPlatform) {
@@ -35,7 +35,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 });
 
-app.controller("LoginController", function($scope, $rootScope, $state, $timeout, $firebaseAuth) {
+app.controller("LoginController", function($scope, $ionicPopup, $rootScope, $state, $timeout, $firebaseAuth, $ionicLoading) {
  
     $scope.login = function(username, password) {
         var fbAuth = $firebaseAuth(fb);
@@ -43,12 +43,44 @@ app.controller("LoginController", function($scope, $rootScope, $state, $timeout,
             email: username,
             password: password
         }).then(function(authData) {
-            $scope.message= "Logged in as:" + authData.uid;
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+              });
+
+           // $scope.message= "Logged in as:" + authData.uid;
+            console.log("Logged in as:" + authData.uid);
            $timeout(function() {
+                $ionicLoading.hide();
                 $state.transitionTo("time");
-            }, 1000);
+            }, 2000);
         }).catch(function(error) {
-            $scope.error = "Authentication failed: " +error;
+            //$scope.error = 
+            console.log("Authentication failed: " + error);
+            var msg = "Try Again";
+
+        /*if(error && error.code) {
+          switch (error.code) {
+            case "EMAIL_TAKEN":
+              msg = "This Email has been taken."; break;
+            case "INVALID_EMAIL":
+              msg = "Invalid Email."; break;
+          case "NETWORK_ERROR":
+              msg = "Network Error."; break;
+            case "INVALID_PASSWORD":
+              msg = "Invalid Password."; break;
+            case "INVALID_USER":
+              msg = "Invalid User."; break;
+          }
+        }*/
+            
+            $ionicPopup.alert({
+                 title: 'Login Error',
+                 template: msg
+               });
         });
     }
  
@@ -65,13 +97,39 @@ app.controller("LoginController", function($scope, $rootScope, $state, $timeout,
                 $state.transitionTo("time");
             }, 5000);
         }).catch(function(error) {
-            $scope.error("ERROR " + error);
+            
+
+        var msg = "Try Again";
+
+        /*if(error && error.code) {
+          switch (error.code) {
+            case "EMAIL_TAKEN":
+              msg = "This Email has been taken."; break;
+            case "INVALID_EMAIL":
+              msg = "Invalid Email."; break;
+          case "NETWORK_ERROR":
+              msg = "Network Error."; break;
+            case "INVALID_PASSWORD":
+              msg = "Invalid Password."; break;
+            case "INVALID_USER":
+              msg = "Invalid User."; break;
+          }
+        }*/
+            
+            $ionicPopup.alert({
+                 title: 'Registration Error',
+                 template: msg
+               });
+    
+            console.log("Authentication failed: " + error);
         });
     }
+
+
  
 });
 
-app.controller("TimeController", function($scope, $firebaseObject, $ionicModal, $timeout) {
+app.controller("TimeController", function($scope, $firebaseObject, $ionicModal, $ionicActionSheet,$timeout) {
     
     $scope.list = function() {
         fbAuth = fb.getAuth();
@@ -79,7 +137,33 @@ app.controller("TimeController", function($scope, $firebaseObject, $ionicModal, 
             var syncObject = $firebaseObject(fb.child("users/" + fbAuth.uid));
             syncObject.$bindTo($scope, "data");
         }
+        
     }
+
+    /*$scope.getColor = function(color){
+        $(function(){
+            console.log(color);
+            $scope.Q1 = "#1E8A09";
+            //Q2 = "#7D2A68";
+            //Q3 = "#333676";
+            if(color == "Lab"){
+                //$(".card .item, .card").css("background-color","#AA3939");
+                $scope.Q1 = "#AA3939";
+            }else
+                if(color == "Lecture"){
+                    //$(".card .item, .card").css("background-color","#7D2A68");
+                    console.log(Q2);
+                    $scope.Q1 = "#7D2A68";
+                }else if(color == "Tutorial"){
+                        //$(".card .item, .card").css("background-color","#333676");
+                        $scope.Q1 = "#333676";
+                     }
+                     //else{
+                        //$(".card .item, .card").css("background-color","#fff");
+                        //return { color: "#fff" }
+                //}
+        })
+    }*/
 
     $ionicModal.fromTemplateUrl('templates/add.html', {
         scope: $scope
@@ -102,11 +186,44 @@ app.controller("TimeController", function($scope, $firebaseObject, $ionicModal, 
             title: tt.module, 
             room: tt.room,
             time: tt.time,
-            //day: tt.day,
+            day: tt.day,
+            type: tt.type,
             lect: tt.lect
         });
         $scope.closeLogin();
     }
+
+
+        // Triggered on a button click, or some other target
+     $scope.onHold = function(index) {
+      var syncObject = $firebaseObject(fb.child("users/" + fbAuth.uid));
+       // Show the action sheet
+       var hideSheet = $ionicActionSheet.show({
+         buttons: [
+            {text: 'Delete'},
+            { text: 'Edit' },
+            {text: 'Mark'}
+         ],
+         titleText: 'Options',
+         cancelText: 'Cancel',
+         cancel: function() {
+              hidesheet();
+            },
+         buttonClicked: function(index) {
+              if (index == 0) {
+                console.log("DELETE");
+                $syncObject.$remove(index);
+              };
+           return true;
+         }
+       });
+
+       // For example's sake, hide the sheet after two seconds
+       //$timeout(function() {
+       //  hideSheet();
+      // }, 2000);
+
+     };
 });
 
 app.$inject = ['$scope'];

@@ -16,10 +16,10 @@
 
                 <label class="item item-select">
                     <span class="input-label">LAB/Lecture/Tutorial</span>
-                    <select>
-                        <option ng-model="type" ng-value="Lab">Lab</option>
-                        <option ng-model="type" ng-value="Lecture">Lecture</option>
-                        <option ng-model="type" ng-value="Tutorial">Tutorial</option>
+                    <select ng-model="tt.type">
+                        <option value="#2774C6">Lab</option>
+                        <option value="#7B1E7A">Lecture</option>
+                        <option value="#0C0A3E">Tutorial</option>
                     </select>
                 </label>
 
@@ -35,13 +35,13 @@
 
                 <label class="item item-select">
                     <span class="input-label">Day</span>
-                    <select>
-                        <option ng-model="tt.day" ng-value="Monday">Monday</option>
-                        <option ng-model="tt.day" ng-value="Tuesday">Tuesday</option>
-                        <option ng-model="tt.day" ng-value="Wednesday">Wednesday</option>
-                        <option ng-model="tt.day" ng-value="Thursday">Thursday</option>
-                        <option ng-model="tt.day" ng-value="Friday">Friday</option>
-                        <option ng-model="tt.day" ng-value="Saturday">Saturday</option>
+                    <select ng-model="tt.day">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
                     </select>
                 </label>
 
